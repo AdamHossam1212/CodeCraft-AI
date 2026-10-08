@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CodeCraft AI</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       AUTH SCREEN
+  ========================== -->
+
+  <div id="authScreen" class="authScreen">
+
+    <div class="authBox">
+
+      <div class="authLogo">
+
+        <span class="badge">
+          AI POWERED
+        </span>
+
+        <h1>
+          CodeCraft AI
+        </h1>
+
+        <p>
+          منصتك الذكية لصناعة الكود باستخدام AI
+        </p>
+
+      </div>
+
+
+      <!-- LOGIN -->
+
+      <div id="loginBox" class="authForm">
+
+        <h2>
+          🔐 تسجيل الدخول
+        </h2>
+
+        <p class="authSubtitle">
+          ادخل إلى حسابك للمتابعة
+        </p>
+
+        <input
+          id="loginUsername"
+          type="text"
+          placeholder="اسم المستخدم"
+          autocomplete="username"
+        >
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="كلمة المرور"
+          autocomplete="current-password"
+        >
+
+        <button
+          id="loginButton"
+          class="authButton"
+        >
+          🔐 تسجيل الدخول
+        </button>
+
+        <div
+          id="loginStatus"
+          class="authStatus"
+        ></div>
+
+        <p class="switchAuth">
+
+          ليس لديك حساب؟
+
+          <button
+            id="showRegister"
+            class="textButton"
+            type="button"
+          >
+            إنشاء حساب
+          </button>
+
+        </p>
+
+      </div>
+
+
+      <!-- REGISTER -->
+
+      <div
+        id="registerBox"
+        class="authForm hidden"
+      >
+
+        <h2>
+          📝 إنشاء حساب
+        </h2>
+
+        <p class="authSubtitle">
+          أنشئ حسابك وابدأ استخدام CodeCraft AI
+        </p>
+
+        <input
+          id="registerUsername"
+          type="text"
+          placeholder="اسم المستخدم"
+          autocomplete="username"
+        >
+
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="كلمة المرور"
+          autocomplete="new-password"
+        >
+
+        <input
+          id="registerPasswordConfirm"
+          type="password"
+          placeholder="تأكيد كلمة المرور"
+          autocomplete="new-password"
+        >
+
+        <button
+          id="registerButton"
+          class="authButton"
+          type="button"
+        >
+          🚀 إنشاء الحساب
+        </button>
+
+        <div
+          id="registerStatus"
+          class="authStatus"
+        ></div>
+
+        <p class="switchAuth">
+
+          لديك حساب بالفعل؟
+
+          <button
+            id="showLogin"
+            class="textButton"
+            type="button"
+          >
+            تسجيل الدخول
+          </button>
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       MAIN APP
+  ========================== -->
+
+  <main
+    id="mainApp"
+    class="app hidden"
+  >
+
+    <header>
+
+      <div>
+
+        <span class="badge">
+          AI POWERED
+        </span>
+
+        <h1>
+          CodeCraft AI
+        </h1>
+
+        <p>
+          اكتب فكرتك بالعربي أو بالإنجليزي وحوّلها إلى كود وشاهده مباشرة.
+        </p>
+
+      </div>
+
+      <div class="userBar">
+
+        <span>
+          👤
+          <strong id="currentUsername">
+            User
+          </strong>
+        </span>
+
+        <button
+          id="logoutButton"
+          type="button"
+        >
+          🚪 تسجيل الخروج
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         GENERATOR
+    ========================== -->
+
+    <section class="panel">
+
+      <div class="row">
+
+        <label>
+
+          نوع المهمة
+
+          <select id="mode">
+
+            <option value="code">
+              💻 توليد كود
+            </option>
+
+            <option value="content">
+              ✍️ كتابة محتوى
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label id="languageWrap">
+
+          لغة البرمجة
+
+          <select id="language">
+
+            <option value="HTML/CSS/JavaScript">
+              HTML/CSS/JavaScript
+            </option>
+
+            <option value="JavaScript">
+              JavaScript
+            </option>
+
+            <option value="Python">
+              Python
+            </option>
+
+            <option value="React">
+              React
+            </option>
+
+            <option value="PHP">
+              PHP
+            </option>
+
+            <option value="Java">
+              Java
+            </option>
+
+            <option value="C++">
+              C++
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <label>
+
+          الأسلوب
+
+          <select id="style">
+
+            <option value="professional">
+              professional
+            </option>
+
+            <option value="modern">
+              modern
+            </option>
+
+            <option value="simple">
+              simple
+            </option>
+
+            <option value="creative">
+              creative
+            </option>
+
+          </select>
+
+        </label>
+
+      </div>
+
+
+      <label class="promptLabel">
+        اكتب طلبك
+      </label>
+
+
+      <textarea
+        id="prompt"
+        placeholder="مثال: اعمل لي صفحة ألعاب حديثة باستخدام HTML وCSS وJavaScript..."
+      ></textarea>
+
+
+      <button
+        id="generate"
+        type="button"
+      >
+        ✨ Generate
+      </button>
+
+
+      <div id="status"></div>
+
+    </section>
+
+
+    <!-- =========================
+         CODE RESULT
+    ========================== -->
+
+    <section class="result panel">
+
+      <div class="resultHead">
+
+        <h2>
+          💻 الكود
+        </h2>
+
+        <div>
+
+          <button
+            id="copy"
+            type="button"
+          >
+            📋 نسخ
+          </button>
+
+          <button
+            id="download"
+            type="button"
+          >
+            ⬇️ تحميل HTML
+          </button>
+
+          <button
+            id="improve"
+            type="button"
+          >
+            ✨ تحسين الكود
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <pre id="result">النتيجة ستظهر هنا...</pre>
+
+    </section>
+
+
+    <!-- =========================
+         HISTORY
+    ========================== -->
+
+    <section class="history panel">
+
+      <div class="resultHead">
+
+        <h2>
+          🕘 المشاريع السابقة
+        </h2>
+
+        <button
+          id="clearHistory"
+          type="button"
+        >
+          🗑️ مسح السجل
+        </button>
+
+      </div>
+
+
+      <div id="historyList">
+
+        <p class="emptyHistory">
+          لا توجد مشاريع محفوظة حتى الآن.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         LIVE PREVIEW
+    ========================== -->
+
+    <section class="preview panel">
+
+      <div class="resultHead">
+
+        <h2>
+          👀 Live Preview
+        </h2>
+
+        <div>
+
+          <button
+            id="fullscreenPreview"
+            type="button"
+          >
+            ⛶ Full Screen
+          </button>
+
+          <button
+            id="refreshPreview"
+            type="button"
+          >
+            🔄 تحديث
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <iframe
+        id="preview"
+        title="Live Preview"
+        sandbox="allow-scripts"
+      ></iframe>
+
+    </section>
+
+  </main>
+
+
+  <!-- APP JAVASCRIPT -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
